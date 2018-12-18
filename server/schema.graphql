@@ -1,0 +1,107 @@
+type Query {
+  events(
+    latitude: Float,
+    longitude: Float,
+    radius: Int,
+    country: String,
+    getdistance: Boolean,
+    keyword: String,
+    eventcode: String,
+    ticketsavailable: Boolean,
+    specialFeatured: Boolean,
+    imagefilter: Boolean,
+    description: Boolean,
+    under18: Boolean,
+    minDate: String, 
+    maxDate: String,
+    venueid: Int,
+    a: Int, 
+    b: Int, 
+    genreId: Int, 
+    order: String,
+    limit: Int,
+    shufflelimit: Int,
+    offset: Int
+  ): [Event!]!
+  event(id: ID!): Event
+  venue(id: ID!): Venue
+  venues(
+    latitude: Float,
+    longitude: Float,
+    radius: Int,
+    type: String,
+    limit: Int,
+    offset: Int
+  ): [Venue!]!
+  artists(
+    name: String,
+    venueid: Int,
+    b: Int
+  ): [Artist!]!
+  artist(id: ID!): Artist
+  genres: [Genre]
+}
+
+type Event {
+  id: ID!
+  EventCode: String!
+  eventname: String!
+  cancelled: String!
+  imageurl: String!
+  largeimageurl: String!
+  link: String!
+  date: String!
+  startdate: String
+  enddate: String
+  dateStart: String
+  dateEnd: String
+  description: String!
+  minage: String
+  Minage: String
+  entryprice: String!
+  openingtimes: OpeningTime
+  genres: [Genre!]
+  venue: Venue
+  artists: [Artist]
+}
+
+type OpeningTime {
+  doorsopen: String!
+  doorsclose: String!
+  lastentry: String!
+}
+
+type Venue {
+  id: ID!
+  name: String!
+  address: String!
+  town: String!
+  postcode: String!
+  phone: String!
+  description: String
+  imageurl: String
+  latitude: Float!
+  longitude: Float!
+  distance: Int
+  type: String!
+  link: String!
+}
+
+type Artist {
+  id: ID!
+  artistid: String
+  name: String!
+  image: String
+  imageurl: String!
+  nextevent: String
+  favourite: Boolean!
+  spotifymp3url: String
+  spotifyartisturl: String
+}
+
+type Genre {
+  GenreID: String
+  GenreName: String
+  genreid: ID
+  name: String
+}
